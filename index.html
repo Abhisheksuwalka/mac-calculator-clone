@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+̀<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,19 +13,26 @@
           <div class="mac_buttons red-button"></div>
           <div class="mac_buttons yellow-button"></div>
           <div class="mac_buttons green-button"></div>
+          <div class="message"><span id="message-content"></span></div>
         </div>
-        <div class="display"></div>
+        <div class="display">
+          <span id="display_content"></span>
+        </div>
         <div class="keypad">
-          <div class="keys"><span class="text">(</span></div>
-          <div class="keys"><span class="text">)</span></div>
+          <div class="keys bracket" id="left-bracket">
+            <span class="text">(</span>
+          </div>
+          <div class="keys bracket" id="left-bracket">
+            <span class="text">)</span>
+          </div>
           <div class="keys"><span class="text">mc</span></div>
           <div class="keys"><span class="text">m+</span></div>
           <div class="keys"><span class="text">m-</span></div>
           <div class="keys"><span class="text">mr</span></div>
-          <div class="keys"><span class="text">AC</span></div>
-          <div class="keys"><span class="text">+/-</span></div>
+          <div class="keys clear"><span class="text">AC</span></div>
+          <div class="keys change-sign"><span class="text">+/-</span></div>
           <div class="keys"><span class="text">%</span></div>
-          <div class="keys">
+          <div class="keys backspace">
             <span class="text image"
               ><img
                 src="./assets/images/backspace.png"
@@ -92,14 +99,15 @@
           <div class="keys"><span class="text">Rand</span></div>
           <div class="keys dot"><span class="text">.</span></div>
           <div class="keys number"><span class="text">0</span></div>
-          <div class="keys" id="answer-button">
-            <span class="text">ans</span>
+          <div class="keys arithematic" id="plus">
+            <span class="text">+</span>
           </div>
-          <div class="keys arithematic" id="equalto">
+          <div class="keys" id="equalto">
             <span class="text">=</span>
           </div>
         </div>
       </div>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
