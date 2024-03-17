@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.calculator {
+  display: inline-block;
+  border: 0.25px solid blue;
+  background-color: #2a282a;
+  border-radius: 10px;
+  padding: 5px 0px 5px 0px;
+}
+.display {
+  margin: 1px;
+  display: block;
+  height: 10vh;
+  border-radius: 10px;
+  background-color: rgba(42, 40, 42, 0.1);
+}
+.keypad {
+  border: 0.25px solid black;
+  display: inline-grid;
+  grid-template-columns: repeat(10, 1fr); /* 10 columns */
+  grid-template-rows: repeat(5, 1fr); /* 6 rows */
+  grid-column-gap: 1px; /* Adjust gap between grid items as needed */
+  grid-row-gap: 2px;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  text-align: center;
+}
+
+.keys {
+  display: block;
+  /* height: 40px;
+  width: 40px; */
+  color: aliceblue;
+  background-color: #3f3d3f;
+  padding: 5px 10px 5px 10px;
+  border: 0.05px solid black;
+}
