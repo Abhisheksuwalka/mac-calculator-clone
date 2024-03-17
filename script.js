@@ -1,6 +1,7 @@
 // 'use strict';
 let solveEquation = '0';
 let previousArithematic = '';
+let memoryBuffer = 0;
 
 // On clicking a number
 // document.querySelectorAll('.number').forEach(numberElement => {
@@ -51,7 +52,74 @@ let backSpace = function () {
 };
 document.querySelector('.backspace').addEventListener('click', backSpace);
 
-// numbers
+// percentage
+let percentage = function () {
+  final_result = evaluate();
+  solveEquation = final_result / 100;
+  solveEquation.toFixed(14).replace(/\.?0+$/, '');
+  updateDisplay();
+};
+document
+  .querySelector('#percentage')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    percentage();
+  });
+document.querySelector('#percentage').addEventListener('mouseup', function () {
+  this.classList.remove('active'); // Remove 'active' class on mouseup
+});
+
+// memory buffer
+// mc
+document
+  .querySelector('#memory-clear')
+  .addEventListener('mousedown', function () {
+    memoryBuffer = 0;
+    this.classList.add('active');
+  });
+document
+  .querySelector('#memory-clear')
+  .addEventListener('mouseup', function () {
+    this.classList.remove('active'); // Remove 'active' class on mouseup
+  });
+
+// m+
+document
+  .querySelector('#memory-add')
+  .addEventListener('mousedown', function () {
+    memoryBuffer = evaluate();
+    updateDisplay();
+    this.classList.add('active');
+  });
+document.querySelector('#memory-add').addEventListener('mouseup', function () {
+  this.classList.remove('active'); // Remove 'active' class on mouseup
+});
+// m-
+document
+  .querySelector('#memory-sub')
+  .addEventListener('mousedown', function () {
+    solveEquation = evaluate() - memoryBuffer;
+    updateDisplay();
+    this.classList.add('active');
+  });
+document.querySelector('#memory-sub').addEventListener('mouseup', function () {
+  this.classList.remove('active'); // Remove 'active' class on mouseup
+});
+// mr
+document
+  .querySelector('#memory-recall')
+  .addEventListener('mousedown', function () {
+    solveEquation = memoryBuffer;
+    updateDisplay();
+    this.classList.add('active');
+  });
+document
+  .querySelector('#memory-recall')
+  .addEventListener('mouseup', function () {
+    this.classList.remove('active'); // Remove 'active' class on mouseup
+  });
+
+// numbers and others
 let inputMore = function (pressed_button) {
   if (typeof solveEquation !== 'string') solveEquation = String(solveEquation);
   solveEquation += pressed_button;
@@ -69,6 +137,7 @@ document
     });
   });
 
+// e
 document
   .querySelector('#eularNumber')
   .addEventListener('mousedown', function () {
@@ -79,6 +148,18 @@ document.querySelector('#eularNumber').addEventListener('mouseup', function () {
   this.classList.remove('active');
 });
 
+// PI
+document.querySelector('#pi').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  inputMore(Math.PI);
+});
+document.querySelector('#eularNumber').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// logorithm
+
+// KEYBOARD FUNCTIONALITY
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Enter' || event.key === '=') {
     evaluate();
@@ -92,8 +173,14 @@ document.addEventListener('keydown', function (event) {
         inputMore(Math.PI);
         break;
       case 'Backspace':
+        backSpace();
         break;
       case '%':
+        percentage();
+        break;
+      case ' ':
+        console.log(memoryBuffer);
+        break;
       case '0':
       case '1':
       case '2':
@@ -123,16 +210,19 @@ document.addEventListener('keydown', function (event) {
 let evaluate = function () {
   let current_Equation = document.querySelector('#display_content').textContent;
   try {
-    let result = eval(current_Equation)
+    // Remove leading zeros from the current equation
+    current_Equation = current_Equation.replace(/\b0+(\d+)/g, '$1');
+    current_Equation = eval(current_Equation)
       .toFixed(14)
       .replace(/\.?0+$/, '');
-    solveEquation = Number(result); // type is number
+    solveEquation = Number(current_Equation); // type is number
     updateDisplay();
   } catch (error) {
     // console.error('Syntax error:', error.message);
     document.querySelector('#message-content').textContent =
       '‼️ Invalid calculations';
   }
+  return current_Equation;
 };
 document.querySelector('#equalto').addEventListener('mousedown', function () {
   evaluate();
