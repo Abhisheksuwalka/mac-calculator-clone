@@ -9,8 +9,10 @@
 html {
   background-color: #5f82ab;
 }
-body {
-  zoom: 1.5; /* 150% zoom */
+@media only screen and (min-width: 600px) {
+  body {
+    zoom: 1.5; /* 150% zoom */
+  }
 }
 .calculator {
   position: absolute;
@@ -57,13 +59,13 @@ body {
 }
 
 .display {
-  margin: 1px;
+  margin: 0px 1px 1px 1px;
   display: flex;
   height: 5vh;
   border-radius: 10px;
   justify-content: flex-end;
   background-color: rgba(42, 40, 42, 0.1);
-  padding: 10px;
+  padding: 0px 10px 15px 10px;
   color: white;
   font: inherit;
   font-size: 40px;

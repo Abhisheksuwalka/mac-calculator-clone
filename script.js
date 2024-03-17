@@ -74,7 +74,7 @@ document.querySelector('#equalto').addEventListener('mousedown', function () {
     let result = eval(solveEquation)
       .toFixed(14)
       .replace(/\.?0+$/, '');
-    solveEquation = result; // type is number
+    solveEquation = Number(result); // type is number
     updateDisplay();
     this.classList.add('active'); // Add 'active' class on mousedown
   } catch (error) {
