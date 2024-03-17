@@ -6,7 +6,6 @@ let memoryBuffer = 0;
 // On clicking a number
 // document.querySelectorAll('.number').forEach(numberElement => {
 //   numberElement.addEventListener('click', function () {
-//     console.log(numberElement.textContent);
 //     numberElement.classList.toggle('active');
 //   });
 // });
@@ -40,9 +39,9 @@ document.querySelector('.change-sign').addEventListener('click', changeSign);
 // 3. backspace functionality
 let backSpace = function () {
   if (typeof solveEquation === 'number') {
-    solveEquation = string(solveEquation);
+    solveEquation = String(solveEquation);
     solveEquation = Number(
-      solveEquation.substring(0, string(solveEquation).length - 1)
+      solveEquation.substring(0, solveEquation.length - 1)
     ); // number changed to string for floating numbers
     updateDisplay();
   } else if (typeof solveEquation === 'string') {
@@ -74,8 +73,8 @@ document.querySelector('#percentage').addEventListener('mouseup', function () {
 document
   .querySelector('#memory-clear')
   .addEventListener('mousedown', function () {
-    memoryBuffer = 0;
     this.classList.add('active');
+    memoryBuffer = 0;
   });
 document
   .querySelector('#memory-clear')
@@ -87,9 +86,9 @@ document
 document
   .querySelector('#memory-add')
   .addEventListener('mousedown', function () {
+    this.classList.add('active');
     memoryBuffer = evaluate();
     updateDisplay();
-    this.classList.add('active');
   });
 document.querySelector('#memory-add').addEventListener('mouseup', function () {
   this.classList.remove('active'); // Remove 'active' class on mouseup
@@ -98,9 +97,9 @@ document.querySelector('#memory-add').addEventListener('mouseup', function () {
 document
   .querySelector('#memory-sub')
   .addEventListener('mousedown', function () {
+    this.classList.add('active');
     solveEquation = evaluate() - memoryBuffer;
     updateDisplay();
-    this.classList.add('active');
   });
 document.querySelector('#memory-sub').addEventListener('mouseup', function () {
   this.classList.remove('active'); // Remove 'active' class on mouseup
@@ -109,9 +108,9 @@ document.querySelector('#memory-sub').addEventListener('mouseup', function () {
 document
   .querySelector('#memory-recall')
   .addEventListener('mousedown', function () {
+    this.classList.add('active');
     solveEquation = memoryBuffer;
     updateDisplay();
-    this.classList.add('active');
   });
 document
   .querySelector('#memory-recall')
@@ -137,6 +136,242 @@ document
     });
   });
 
+// square the display output
+document.querySelector('#square').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  solveEquation = eval(evaluate() ** 2);
+  updateDisplay();
+});
+document.querySelector('#square').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// cube the display output
+document.querySelector('#cube').addEventListener('mousedown', function () {
+  let finalValue = Number(evaluate());
+  solveEquation = Math.pow(finalValue, 3); // eval(finalValue ** 3) or Math.pow(finalValue, 3); not working !!
+  this.classList.add('active');
+  updateDisplay();
+});
+document.querySelector('#cube').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// raise power to y
+document
+  .querySelector('#raiseToPowerY')
+  .addEventListener('mousedown', async function () {
+    this.classList.add('active');
+    let finalValue = Number(evaluate());
+    document.querySelector('#message-content').textContent = '‼️ Input y';
+    solveEquation = 0;
+    // Wait until solveEquation becomes non-zero
+    await new Promise(resolve => {
+      const checkNonZero = () => {
+        if (solveEquation !== 0) {
+          document.querySelector('#message-content').textContent = '';
+          resolve();
+        } else {
+          setTimeout(checkNonZero, 100); // Check again after 100 milliseconds
+        }
+      };
+      checkNonZero();
+    });
+    let power = Number(evaluate());
+    console.log('final value : ' + finalValue + ' power: ' + power);
+    solveEquation = Math.pow(finalValue, power);
+    updateDisplay();
+  });
+document
+  .querySelector('#raiseToPowerY')
+  .addEventListener('mouseup', function () {
+    this.classList.remove('active');
+  });
+
+// e raise to power x
+document
+  .querySelector('#eRaiseToPowerX')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    let finalValue = Number(evaluate());
+    solveEquation = Math.pow(Math.E, finalValue); // eval(finalValue ** 3) or Math.pow(finalValue, 3); not working !!
+    updateDisplay();
+  });
+document
+  .querySelector('#eRaiseToPowerX')
+  .addEventListener('mouseup', function () {
+    this.classList.remove('active');
+  });
+
+// 10 raise to power x
+document
+  .querySelector('#tenRaiseToPowerX')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    let finalValue = Number(evaluate());
+    solveEquation = Math.pow(10, finalValue); // eval(finalValue ** 3) or Math.pow(finalValue, 3); not working !!
+    updateDisplay();
+  });
+document
+  .querySelector('#tenRaiseToPowerX')
+  .addEventListener('mouseup', function () {
+    this.classList.remove('active');
+  });
+
+// reciprocal
+document
+  .querySelector('#reciprocal')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    let finalValue = Number(evaluate());
+    solveEquation = 1 / finalValue; // eval(finalValue ** 3) or Math.pow(finalValue, 3); not working !!
+    updateDisplay();
+  });
+document.querySelector('#reciprocal').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// squareroot the display output
+document
+  .querySelector('#squareRoot')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    solveEquation = Math.pow(evaluate(), 0.5);
+    updateDisplay();
+  });
+document.querySelector('#squareRoot').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// cubeRoot the display output
+document.querySelector('#cubeRoot').addEventListener('mousedown', function () {
+  let finalValue = Number(evaluate());
+  solveEquation = Math.pow(finalValue, 1 / 3); // eval(finalValue ** 3) or Math.pow(finalValue, 3); not working !!
+  this.classList.add('active');
+  updateDisplay();
+});
+document.querySelector('#cubeRoot').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// yth root of display output
+document
+  .querySelector('#ythRoot')
+  .addEventListener('mousedown', async function () {
+    this.classList.add('active');
+    let finalValue = Number(evaluate());
+    document.querySelector('#message-content').textContent = '‼️ Input y';
+    solveEquation = 0;
+    // Wait until solveEquation becomes non-zero
+    await new Promise(resolve => {
+      const checkNonZero = () => {
+        if (solveEquation !== 0) {
+          document.querySelector('#message-content').textContent = '';
+          resolve();
+        } else {
+          setTimeout(checkNonZero, 100); // Check again after 100 milliseconds
+        }
+      };
+      checkNonZero();
+    });
+    let power = Number(evaluate());
+    solveEquation = Math.pow(finalValue, eval(1 / power));
+    console.log('here solveEquation is of type :  ' + typeof solveEquation);
+    updateDisplay();
+  });
+document.querySelector('#ythRoot').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+// logorithm of display content
+document.querySelector('#logorithm').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  let finalValue = Number(evaluate());
+  solveEquation = Math.log(finalValue);
+  updateDisplay();
+});
+document.querySelector('#logorithm').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// logorithmBase10 of display content
+document
+  .querySelector('#logorithmBase10')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    let finalValue = Number(evaluate());
+    solveEquation = Math.log(finalValue) / Math.log(10);
+    updateDisplay();
+  });
+document
+  .querySelector('#logorithmBase10')
+  .addEventListener('mouseup', function () {
+    this.classList.remove('active');
+  });
+
+function factorial(n) {
+  if (n === 0 || n === 1) {
+    return 1;
+  } else {
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+      result *= i;
+    }
+    return result;
+  }
+}
+//factorial
+document.querySelector('#factorial').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  let finalValue = Number(evaluate());
+  solveEquation = factorial(finalValue);
+  updateDisplay();
+});
+document.querySelector('#factorial').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// trignometry of the display content
+function convertAngle() {
+  let angleInRadian;
+  if (document.querySelector('#angle').textContent === 'Deg') {
+    angleInRadian = evaluate() * (Math.PI / 180);
+  }
+  angleInRadian = evaluate();
+  return angleInRadian;
+}
+//sin
+document.querySelector('#sin').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  let finalValue = convertAngle();
+  solveEquation = Math.sin(finalValue);
+  updateDisplay();
+});
+document.querySelector('#sin').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+//cos
+document.querySelector('#cos').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  let finalValue = convertAngle();
+  solveEquation = Math.cos(finalValue);
+  updateDisplay();
+});
+document.querySelector('#cos').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+//tan
+document.querySelector('#tan').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  let finalValue = convertAngle();
+  solveEquation = Math.tan(finalValue);
+  updateDisplay();
+});
+document.querySelector('#tan').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
 // e
 document
   .querySelector('#eularNumber')
@@ -145,6 +380,19 @@ document
     inputMore(Math.E);
   });
 document.querySelector('#eularNumber').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
+
+// change angle
+document.querySelector('#angle').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  if (document.querySelector('#angle').textContent == 'Rad') {
+    document.querySelector('#angle').textContent = 'Deg';
+  } else {
+    document.querySelector('#angle').textContent = 'Rad';
+  }
+});
+document.querySelector('#angle').addEventListener('mouseup', function () {
   this.classList.remove('active');
 });
 
@@ -157,7 +405,16 @@ document.querySelector('#eularNumber').addEventListener('mouseup', function () {
   this.classList.remove('active');
 });
 
-// logorithm
+// random
+document.querySelector('#random').addEventListener('mousedown', function () {
+  this.classList.add('active');
+  this.classList.add('active');
+  solveEquation = Math.random();
+  updateDisplay();
+});
+document.querySelector('#random').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
 
 // KEYBOARD FUNCTIONALITY
 document.addEventListener('keydown', function (event) {
@@ -229,6 +486,7 @@ document.querySelector('#equalto').addEventListener('mousedown', function () {
   this.classList.add('active'); // Add 'active' class on mousedown
 });
 document.querySelector('#equalto').addEventListener('mouseup', function () {
+  document.querySelector('#message-content').textContent = '';
   this.classList.remove('active');
 });
 
