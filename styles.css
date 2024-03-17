@@ -1,10 +1,16 @@
 * {
   margin: 0;
   padding: 0;
-  font-size: large;
+  font-family: 'SF pro', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
 }
 html {
-  background-color: #2d2a2e;
+  background-color: #5f82ab;
+}
+body {
+  zoom: 1.5; /* 150% zoom */
 }
 .calculator {
   position: absolute;
@@ -19,6 +25,7 @@ html {
   box-shadow: 0px 4px 6px rgba(23, 23, 23, 0.5);
 }
 .topbar {
+  display: inline;
   padding-top: 0px;
   padding-left: 10px;
 }
@@ -39,15 +46,31 @@ html {
 .green-button {
   background-color: #28c840;
 }
+.message {
+  padding: 1px 5px 1px 5px;
+  margin-right: 5px;
+  position: absolute;
+  right: 0;
+  display: inline;
+  font-size: small;
+  background-color: #3f3d3f;
+}
+
 .display {
   margin: 1px;
-  display: block;
-  height: 10vh;
+  display: flex;
+  height: 5vh;
   border-radius: 10px;
+  justify-content: flex-end;
   background-color: rgba(42, 40, 42, 0.1);
+  padding: 10px;
+  color: white;
+  font: inherit;
+  font-size: 40px;
 }
 .keypad {
   display: inline-grid;
+  font: inherit;
   grid-template-columns: repeat(10, 1fr); /* 10 columns */
   grid-template-rows: repeat(5, 1fr); /* 6 rows */
   grid-column-gap: 1px; /* Adjust gap between grid items as needed */
@@ -67,9 +90,17 @@ html {
   /* border: 0.05px solid black; */
 }
 
+.keys.number.active {
+  background-color: hsl(0, 0%, 71%); /* Change background color when active */
+}
+
 .arithematic {
   background-color: #ff9f0a;
 }
+.keys.arithematic.active {
+  background-color: #cb7d06;
+}
+
 .number,
 .dot {
   background-color: #5f5d5f;
@@ -77,6 +108,10 @@ html {
 
 #equalto {
   border-bottom-right-radius: 10px;
+  background-color: #3f3d3f;
+}
+.active#equalto {
+  background-color: #5f5d5f;
 }
 
 #angle {
