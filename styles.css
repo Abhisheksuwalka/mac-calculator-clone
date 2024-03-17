@@ -1,12 +1,43 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: large;
+}
+html {
+  background-color: #2d2a2e;
 }
 .calculator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
   background-color: #2a282a;
   border-radius: 10px;
   padding: 5px 0px 0px 0px;
+  border: 1px solid rgb(165, 164, 166);
+  box-shadow: 0px 4px 6px rgba(23, 23, 23, 0.5);
+}
+.topbar {
+  padding-top: 0px;
+  padding-left: 10px;
+}
+.mac_buttons {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 11px;
+}
+.red-button {
+  background-color: #ff5f57;
+}
+
+.yellow-button {
+  background-color: #febc2e;
+}
+
+.green-button {
+  background-color: #28c840;
 }
 .display {
   margin: 1px;
