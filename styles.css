@@ -1,13 +1,43 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: large;
+}
+html {
+  background-color: #2d2a2e;
 }
 .calculator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
-  border: 0.25px solid blue;
   background-color: #2a282a;
   border-radius: 10px;
-  padding: 5px 0px 5px 0px;
+  padding: 5px 0px 0px 0px;
+  border: 1px solid rgb(165, 164, 166);
+  box-shadow: 0px 4px 6px rgba(23, 23, 23, 0.5);
+}
+.topbar {
+  padding-top: 0px;
+  padding-left: 10px;
+}
+.mac_buttons {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 11px;
+}
+.red-button {
+  background-color: #ff5f57;
+}
+
+.yellow-button {
+  background-color: #febc2e;
+}
+
+.green-button {
+  background-color: #28c840;
 }
 .display {
   margin: 1px;
@@ -17,12 +47,11 @@
   background-color: rgba(42, 40, 42, 0.1);
 }
 .keypad {
-  border: 0.25px solid black;
   display: inline-grid;
   grid-template-columns: repeat(10, 1fr); /* 10 columns */
   grid-template-rows: repeat(5, 1fr); /* 6 rows */
   grid-column-gap: 1px; /* Adjust gap between grid items as needed */
-  grid-row-gap: 2px;
+  grid-row-gap: 1px;
   justify-content: space-evenly;
   align-content: space-evenly;
   text-align: center;
@@ -35,5 +64,21 @@
   color: aliceblue;
   background-color: #3f3d3f;
   padding: 5px 10px 5px 10px;
-  border: 0.05px solid black;
+  /* border: 0.05px solid black; */
+}
+
+.arithematic {
+  background-color: #ff9f0a;
+}
+.number,
+.dot {
+  background-color: #5f5d5f;
+}
+
+#equalto {
+  border-bottom-right-radius: 10px;
+}
+
+#angle {
+  border-bottom-left-radius: 10px;
 }
