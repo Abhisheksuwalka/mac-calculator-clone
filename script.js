@@ -18,13 +18,14 @@ function updateDisplay() {
 }
 
 // 1. to clean the display
-document.querySelector('.clear').addEventListener('click', function () {
+let cleanTheDisplay = function () {
   solveEquation = '0';
   updateDisplay();
-});
+};
+document.querySelector('.clear').addEventListener('click', cleanTheDisplay);
 
 // 2. plus minus change sign
-document.querySelector('.change-sign').addEventListener('click', function () {
+let changeSign = function () {
   if (typeof solveEquation === 'number') {
     solveEquation *= -1;
     updateDisplay();
@@ -32,10 +33,11 @@ document.querySelector('.change-sign').addEventListener('click', function () {
     solveEquation = '-1 * (' + solveEquation + ')';
     updateDisplay();
   }
-});
+};
+document.querySelector('.change-sign').addEventListener('click', changeSign);
 
 // 3. backspace functionality
-document.querySelector('.backspace').addEventListener('click', function () {
+let backSpace = function () {
   if (typeof solveEquation === 'number') {
     solveEquation = string(solveEquation);
     solveEquation = Number(
@@ -46,15 +48,20 @@ document.querySelector('.backspace').addEventListener('click', function () {
     solveEquation = solveEquation.substring(0, solveEquation.length - 1);
     updateDisplay();
   }
-});
+};
+document.querySelector('.backspace').addEventListener('click', backSpace);
 
+// numbers
+let inputMore = function (pressed_button) {
+  if (typeof solveEquation !== 'string') solveEquation = String(solveEquation);
+  solveEquation += pressed_button;
+  updateDisplay();
+};
 document
   .querySelectorAll('.number, .arithematic, .bracket, .dot')
   .forEach(numberElement => {
     numberElement.addEventListener('mousedown', function () {
-      let pressed_button = numberElement.textContent;
-      solveEquation += pressed_button;
-      updateDisplay();
+      inputMore(numberElement.textContent);
       numberElement.classList.add('active'); // Add 'active' class on mousedown
     });
     numberElement.addEventListener('mouseup', function () {
@@ -62,26 +69,74 @@ document
     });
   });
 
-// document.querySelector('#equalto').addEventListener('click', function () {
-//   let result = eval(solveEquation);
-//   solveEquation = result;
-//   updateDisplay();
-// });
+document
+  .querySelector('#eularNumber')
+  .addEventListener('mousedown', function () {
+    this.classList.add('active');
+    inputMore(Math.E);
+  });
+document.querySelector('#eularNumber').addEventListener('mouseup', function () {
+  this.classList.remove('active');
+});
 
-// FINAL OUTPUT
-document.querySelector('#equalto').addEventListener('mousedown', function () {
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter' || event.key === '=') {
+    evaluate();
+  } else {
+    // Check if the pressed key is a number between 0 to 9
+    switch (event.key) {
+      case 'e':
+        inputMore(Math.E);
+        break;
+      case 'p':
+        inputMore(Math.PI);
+        break;
+      case 'Backspace':
+        break;
+      case '%':
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+      case '.':
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+      case '(':
+      case ')':
+        inputMore(event.key);
+        break;
+      default:
+        // Do nothing for other keys
+        break;
+    }
+  }
+});
+
+let evaluate = function () {
+  let current_Equation = document.querySelector('#display_content').textContent;
   try {
-    let result = eval(solveEquation)
+    let result = eval(current_Equation)
       .toFixed(14)
       .replace(/\.?0+$/, '');
     solveEquation = Number(result); // type is number
     updateDisplay();
-    this.classList.add('active'); // Add 'active' class on mousedown
   } catch (error) {
     // console.error('Syntax error:', error.message);
     document.querySelector('#message-content').textContent =
       '‼️ Invalid calculations';
   }
+};
+document.querySelector('#equalto').addEventListener('mousedown', function () {
+  evaluate();
+  this.classList.add('active'); // Add 'active' class on mousedown
 });
 document.querySelector('#equalto').addEventListener('mouseup', function () {
   this.classList.remove('active');

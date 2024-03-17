@@ -91,6 +91,9 @@ html {
   padding: 5px 10px 5px 10px;
   /* border: 0.05px solid black; */
 }
+.keys.active {
+  background-color: #5f5d5f;
+}
 
 .keys.number.active {
   background-color: hsl(0, 0%, 71%); /* Change background color when active */
