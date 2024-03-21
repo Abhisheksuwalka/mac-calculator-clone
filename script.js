@@ -15,12 +15,14 @@ function updateDisplay() {
     solveEquation = '';
   }
   document.querySelector('#display_content').textContent = solveEquation;
+  document.querySelector('.clear').textContent = 'C';
 }
 
 // 1. to clean the display
 let cleanTheDisplay = function () {
   solveEquation = '0';
   updateDisplay();
+  document.querySelector('.clear').textContent = 'AC';
 };
 document.querySelector('.clear').addEventListener('click', cleanTheDisplay);
 
