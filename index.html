@@ -1,4 +1,4 @@
-̀<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,7 +33,7 @@
           <div class="keys" id="memory-recall">
             <span class="text">mr</span>
           </div>
-          <div class="keys clear topButtons"><span class="text">AC</span></div>
+          <div class="keys clear topButtons"><span class="text">C</span></div>
           <div class="keys change-sign topButtons">
             <span class="text">+/-</span>
           </div>
@@ -67,10 +67,12 @@
           <div class="keys" id="tenRaiseToPowerX">
             <span class="text">10<sup>x</sup></span>
           </div>
-          <div class="keys number"><span class="text">7</span></div>
-          <div class="keys number"><span class="text">8</span></div>
-          <div class="keys number"><span class="text">9</span></div>
-          <div class="keys arithematic"><span class="text">/</span></div>
+          <div class="keys number" id="num7"><span class="text">7</span></div>
+          <div class="keys number" id="num8"><span class="text">8</span></div>
+          <div class="keys number" id="num9"><span class="text">9</span></div>
+          <div class="keys arithematic" id="divide">
+            <span class="text">/</span>
+          </div>
           <div class="keys" id="reciprocal"><span class="text">1/x</span></div>
           <div class="keys">
             <span class="text" id="squareRoot">&radic;<span>x</span></span>
@@ -87,34 +89,57 @@
           <div class="keys">
             <span class="text log" id="logorithmBase10">log<sub>10</sub></span>
           </div>
-          <div class="keys number"><span class="text">4</span></div>
-          <div class="keys number"><span class="text">5</span></div>
-          <div class="keys number"><span class="text">6</span></div>
-          <div class="keys arithematic"><span class="text">*</span></div>
+          <div class="keys number num-row-2" id="num4">
+            <span class="text">4</span>
+          </div>
+          <div class="keys number num-row-2" id="num5">
+            <span class="text">5</span>
+          </div>
+          <div class="keys number num-row-2" id="num6">
+            <span class="text">6</span>
+          </div>
+          <div class="keys arithematic" id="multiply">
+            <span class="text">*</span>
+          </div>
           <div class="keys" id="factorial"><span class="text">x!</span></div>
           <div class="keys" id="sin"><span class="text">sin</span></div>
           <div class="keys" id="cos"><span class="text">cos</span></div>
           <div class="keys" id="tan"><span class="text">tan</span></div>
           <div class="keys" id="eularNumber"><span class="text">e</span></div>
           <div class="keys"><span class="text">EE</span></div>
-          <div class="keys number"><span class="text">1</span></div>
-          <div class="keys number"><span class="text">2</span></div>
-          <div class="keys number"><span class="text">3</span></div>
-          <div class="keys arithematic"><span class="text">-</span></div>
+          <div class="keys number num-row-1" id="num1">
+            <span class="text">1</span>
+          </div>
+          <div class="keys number num-row-1" id="num2">
+            <span class="text">2</span>
+          </div>
+          <div class="keys number num-row-1" id="num3">
+            <span class="text">3</span>
+          </div>
+          <div class="keys arithematic" id="minus">
+            <span class="text">-</span>
+          </div>
           <div class="keys" id="angle"><span class="text">Rad</span></div>
           <div class="keys"><span class="text">sinh</span></div>
           <div class="keys"><span class="text">cosh</span></div>
           <div class="keys"><span class="text">tanh</span></div>
           <div class="keys" id="pi"><span class="text">&pi;</span></div>
           <div class="keys" id="random"><span class="text">Rand</span></div>
-          <div class="keys dot"><span class="text">.</span></div>
-          <div class="keys number"><span class="text">0</span></div>
+          <div class="keys dot num-row-0" id="dot">
+            <span class="text">.</span>
+          </div>
+          <div class="keys number num-row-0" id="num0">
+            <span class="text">0</span>
+          </div>
           <div class="keys arithematic" id="plus">
             <span class="text">+</span>
           </div>
           <div class="keys" id="equalto">
             <span class="text">=</span>
           </div>
+        </div>
+        <div class="pseudo-footer">
+          <div class="iphone-bottom-bar"></div>
         </div>
       </div>
     </main>
